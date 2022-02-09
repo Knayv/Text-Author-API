@@ -1,6 +1,6 @@
 from api import Resource, reqparse, db
 from api.models.user import UserModel
-from api.schemas.user import user_schema, user_schema
+from api.schemas.user import user_schema, users_schema
 
 
 class UserResource(Resource):
@@ -14,6 +14,7 @@ class UserResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("username", required=True)
         parser.add_argument("password", required=True)
+        parser.add_argument("role")
         data = parser.parse_args()
         user = UserModel(**data)
         db.session.add(user)
@@ -22,14 +23,13 @@ class UserResource(Resource):
 
     def put(self, user_id):
         parser = reqparse.RequestParser()
-        parser.add_argument("username", required=True)
-        parser.add_argument("password", required=True)
+        parser.add_argument("username")
+        parser.add_argument("password")
         data = parser.parse_args()
         user = UserModel.query.get(user_id)
         if data["username"]:
             user.username = data["username"]
         if data["password"]:
             user.hash_password(data["password"])
-
         db.session.commit()
         return user_schema.dump(user)

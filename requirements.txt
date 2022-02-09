@@ -1,9 +1,17 @@
 Flask==1.1.2
 Flask-Migrate==2.5.3
 Flask-RESTful==0.3.8
+<<<<<<< HEAD
 Flask-SQLAlchemy
 Marshmallow-sqlalchemy==0.27.0
+=======
+SQLAlchemy<1.4.0
+Flask-SQLAlchemy==2.4.4
+marshmallow-sqlalchemy==0.27.0
+>>>>>>> d59a74b5a0684c7cc67ff71012d89c12e9bf6bf4
 flask-marshmallow==0.14.0
 ipython
 gunicorn
 psycopg2-binary
+
+
